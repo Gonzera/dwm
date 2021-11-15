@@ -2,7 +2,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 4;        /* border pixel of windows */
-static const unsigned int gappx     = 25;        /* gaps between windows */
+static const unsigned int gappx     = 10;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 1;   /* 0: systray in the right corner, >0: systray on left of status text */
@@ -72,13 +72,14 @@ static const char *volmute[]  = { "amixer", "set", "Master", "toggle"};
 static const char *playerpause[]  = { "playerctl", "play-pause"};
 static const char *playernext[]  = { "playerctl", "next" };
 static const char *playerprevious[]  = { "playerctl", "previous"};
-static const char *printsc[] = { "flameshot", "gui"};
+static const char *printsc[] = { "flameshot", "gui", NULL};
 static const char *printscf[] = { "flameshot", "full", "-c" };
-
+static const char *roficmd[] = { "rofi", "-show", "drun", "-show-icons", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = roficmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
